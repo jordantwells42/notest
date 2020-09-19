@@ -39,14 +39,15 @@ def note_page(request, username, pk):
 					for e in Example.objects.filter(term = t):
 
 					for q in Question.objects.filter(term = q):
-
-			"""
-
-			note = serializers.serialize('json', Note.objects.get(pk = pk), handle_forward_references=True)
-			print(note)
 			context = {
 				"sections" : [section for section in Section.objects.filter(note = n)]
 			}
+
+			"""
+
+			note = serializers.serialize('json', Note.objects.all())
+			print(note)
+			
 
 
 
