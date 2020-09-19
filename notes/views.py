@@ -5,8 +5,42 @@ from .serializers import *
 from django.contrib.auth import *
 from rest_framework import viewsets
 from rest_framework import permissions
+import json
+import random
 
 # Create your views here.
+def quiz_page(request, username, pk, qs):
+	context = None
+	questions = {}
+	for i in range(qs):
+		t = random.choice(Term.objects.filter(section__note__id = pk))
+
+		possible_qs = []
+
+		possible_qs.append([e.text for e in Example.objects.filter(term = t)])
+		possible_qs.append([d.text for d in Defintion.objects.filter(term = t)])
+        possible_qs.append([(q.question, q.answer) for q in Question.objects.filter(term = t)])
+
+
+        q = random.choice(possible_questions)
+
+        if len(q) == 2:
+        	question = q[0]
+        	answer = q[1]
+        else:
+        	question = q
+        	answer = t.term_name
+
+        questions.update(question = answer)
+        
+    context = {
+    	"questions" : questions
+    }	
+
+    return redirect
+
+
+
 def notes_index(request, username):
 	context = None
 	user = request.user
@@ -30,25 +64,29 @@ def note_page(request, username, pk):
 	if user.is_authenticated and user.get_username() == username:
 		if pk in [note.id for note in Note.objects.filter(user=user)]:
 			n = Note.objects.get(pk = pk)
-
-			"""
 			note = {}
-			for s in Section.objects.filter(note = n):
-				note.update(s = {})
-				for t in Term.objects.filter(section  = s):
-					for d in Defintion.objects.filter(term = t):
+			note["sections"] = []
+			for i, s in enumerate(Section.objects.filter(note__id = pk)):
+				note["sections"].append({})
+				note["sections"][i]["section_title"] = s.title
+				note["sections"][i]["terms"] = []
+				for j, t in enumerate(Term.objects.filter(section  = s)):
+					note["sections"][i]["terms"].append({})
+					note["sections"][i]["terms"][j]["term_name"] = t.name
+
+					
+					note["sections"][i]["terms"][j]["defintions"] = [d.text for d in Defintion.objects.filter(term = t)]
+
+				
+					note["sections"][i]["terms"][j]["examples"] = [e.text for e in Example.objects.filter(term = t)]
 
 
-					for e in Example.objects.filter(term = t):
-
-					for q in Question.objects.filter(term = q):
-
-			"""
-
-			note = serializers.serialize('json', Note.objects.get(pk = pk), handle_forward_references=True)
+					note["sections"][i]["terms"][j]["questions"] = [q.text for q in Question.objects.filter(term = t)]
+			
 			print(note)
 			context = {
-				"sections" : [section for section in Section.objects.filter(note = n)]
+				"notes": note,
+				"note": n
 			}
 
 
@@ -62,29 +100,3 @@ def note_page(request, username, pk):
 		return redirect("login")
 
 
-class NoteViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
-    queryset = Note.objects.all()
-    serializer_class = NoteSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-
-class SectionViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows groups to be viewed or edited.
-    """
-    queryset = Section.objects.all()
-    serializer_class = SectionSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-
-
-class TermViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows groups to be viewed or edited.
-    """
-    queryset = Term.objects.all()
-    serializer_class = TermSerializer
-    permission_classes = [permissions.IsAuthenticated]
