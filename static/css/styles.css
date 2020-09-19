@@ -22,12 +22,6 @@ div {
   display: block;
 }
 
-.background-image {
-  background-image: url(notestbackground.jpg);
-  background-repeat: no-repeat;
-  background-size: 1920px 1080px;
-}
-
 .navbar {
   background-image: url(notestbackground.jpg);
   background-repeat: no-repeat;
