@@ -9,10 +9,7 @@ import json
 import random
 
 # Create your views here.
-<<<<<<< Updated upstream
-def quiz_page(request, username, pk, qs):
-    pass
-=======
+
 def quiz_page(request, username, pk):
     context = None
     form = request.POST
@@ -47,7 +44,6 @@ def quiz_page(request, username, pk):
     }   
 
     return render(request, "notes/quiz_page.html", context)
->>>>>>> Stashed changes
 
 
 
