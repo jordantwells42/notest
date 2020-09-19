@@ -49,7 +49,7 @@ def quiz_page(request, username, pk):
 
 
 
-def notes_index(request, username):
+def notes_index(request):
     context = None
     user = User.objects.get(pk = 1)
 
