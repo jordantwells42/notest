@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Notes Index</title>
+</head>
+<body>
+	{% for note in notes %}
+	<a href = "{% url 'notes:note_page' user.get_username note.pk %}">
+		<h1>{{note.title}}</h1>
+	</a>
+	{% endfor %}
+</body>
+</html>

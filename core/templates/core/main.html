@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	{% if user.is_authenticated %}
+	<h1> Welcome {{user.get_username}}</h1>
+	{% endif %}
+	<a href='{% url "login" %}'> Login </a>
+	<br>
+	<a href='{% url "core:register" %}'> Register </a>
+</body>
+</html>
