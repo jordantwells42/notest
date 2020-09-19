@@ -18,10 +18,12 @@ def quiz_page(request, username, pk):
         t = random.choice(Term.objects.filter(section__note__id = pk))
 
         possible_qs = []
-
-        possible_qs.append([e.text for e in Example.objects.filter(term = t)])
-        possible_qs.append([d.text for d in Defintion.objects.filter(term = t)])
-        possible_qs.append([(q.question, q.answer) for q in Question.objects.filter(term = t)])
+        for e in Example.objects.filter(term = t):
+            possible_qs.append(e.text)
+        for d in Defintion.objects.filter(term = t):
+            possible_qs.append(d.text )
+        for q in Question.objects.filter(term = t):
+            possible_qs.append((q.question, q.answer))
         print(possible_qs)
 
         q = random.choice(possible_qs)
@@ -49,20 +51,20 @@ def quiz_page(request, username, pk):
 
 def notes_index(request, username):
     context = None
-    user = request.user
-    print(username)
-    if user.is_authenticated and user.get_username() == username:
-        notes = Note.objects.filter(user=user)
+    user = User.objects.get(pk = 1)
+
+    #if user.is_authenticated and user.get_username() == username:
+    notes = Note.objects.filter(user=user)
 
 
-        context = {
-            "notes" : notes
-        }
+    context = {
+        "notes" : notes
+    }
 
-        return render(request, "notes/notes_index.html", context)
+    return render(request, "notes/notes_index.html", context)
 
-    else:
-        return redirect("login")
+    #else:
+        #return redirect("login")
 
 def note_page(request, username, pk):
     context = None
