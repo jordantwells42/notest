@@ -10,34 +10,7 @@ import random
 
 # Create your views here.
 def quiz_page(request, username, pk, qs):
-	context = None
-	questions = {}
-	for i in range(qs):
-		t = random.choice(Term.objects.filter(section__note__id = pk))
-
-		possible_qs = []
-
-		possible_qs.append([e.text for e in Example.objects.filter(term = t)])
-		possible_qs.append([d.text for d in Defintion.objects.filter(term = t)])
-        possible_qs.append([(q.question, q.answer) for q in Question.objects.filter(term = t)])
-
-
-        q = random.choice(possible_questions)
-
-        if len(q) == 2:
-        	question = q[0]
-        	answer = q[1]
-        else:
-        	question = q
-        	answer = t.term_name
-
-        questions.update(question = answer)
-        
-    context = {
-    	"questions" : questions
-    }	
-
-    return redirect
+    pass
 
 
 

@@ -110,3 +110,12 @@ div {
   padding-top: 5rem;
   letter-spacing: 1rem;
 }
+
+.form {
+  font-family: Muli, sans-serif;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: white;
+  padding-top: 5rem;
+  letter-spacing: 1rem;
+}
