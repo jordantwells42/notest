@@ -13,7 +13,7 @@
 			</div>
 		</div>
 	{% if user.is_authenticated %}
-	<a href = "{% url 'notes:notes_index' username=user.get_username %}">
+	<a href = "{% url 'notes:notes_index' username=jordantwells %}">
 	<h1> Welcome {{user.get_username}}</h1>
 </a>
 	{% endif %}
