@@ -2,22 +2,16 @@
 {% block content %}
 	<!--Name-->
 	<div class>
-		<div class="container-fluid top-color" style="color: black; background-size: cover;">
-			<div class="row top-row">
-				<div class = "col-lg-6 top-text">
-					<h1 class="page-name">notest
-					</h1>
+		<div class="container" style="color: black; background-size: cover;">
+			<div class = "col-lg-12" align="center">
+				<h1 class="page-name">N O T E S T
+				</h1>
+				<div>
+					<a class="ghost-button" href="#notebooks">Notebooks</a>
+					<a class="ghost-button" href="#quizzes">Quizzes</a>
 				</div>
 			</div>
-			<div class = "row">
-				<div class = "col-md-6">
-					<div class="btn-group">
-					  <button>Notebooks</button>
-					  <button>Quizzes</button>
-					</div>
-				</div>
 		</div>
-	</div>
 	{% if user.is_authenticated %}
 	<a href = "{% url 'notes:notes_index' username=user.get_username %}">
 	<h1> Welcome {{user.get_username}}</h1>

@@ -1,88 +1,112 @@
 html {
-	font-size: 16px;
-	moz-osx-font-smoothing: grayscale;
-	-webkit-font-smoothing: antialiased;
-	min-width: 300px
-	overflow-x: hidden;
-	overflow-y: scroll;
-	text-rendering: optimizeLegibility;
-	-webkit-text-size-adjust: 100%;
-	-ms-text-size-adjust: 100%;
-	text-size-adjust: 100%;
+  font-size: 16px;
+  moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  min-width: 300px
+  overflow-x: hidden;
+  overflow-y: scroll;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 body {
-	overflow-x: hidden;
+  overflow-x: hidden;
 }
 
 element.style {
-	height: 100%;
+  height: 100%;
 }
 
 div {
-	display: block;
+  display: block;
 }
 
-/* Add a background color to the top navigation */
-.topnav {
-  background-color: #E1F4CB;
-  overflow: hidden;
+.background-image {
+  background-image: url(notestbackground.jpg);
+  background-repeat: no-repeat;
+  background-size: 1920px 1080px;
 }
 
-/* Style the links inside the navigation bar */
-.topnav a {
-  float: left;
-  color: #f2f2f2;
+.navbar {
+  background-image: url(notestbackground.jpg);
+  background-repeat: no-repeat;
+  background-size: 1920px 1080px
+}
+
+.nav-item, .scroll-link, .navbar-collapse{
+  font-family:  Muli, sans-serif;
+  color: white;
+  font-size: 1.4rem;
+}
+
+.nav-item:hover, .scroll-link:hover, .navbar-collapse:hover, .navbar-brand:hover {
+  color: #717568;
+}
+
+.ghost-button {
+  font-family: Muli, sans-serif;
+  display: inline-block;
+  width: 200px;
+  padding: 8px;
+  color: #fff;
+  border: 1px solid #fff;
   text-align: center;
-  font-family: Muli, sans-serif;
-  padding: 14px 16px;
+  outline: none;
   text-decoration: none;
-  font-size: 17px;
-  color: black;
+}
+.ghost-button:hover,
+.ghost-button:active {
+  background-color: #fff;
+  color: #717568;
 }
 
-/* Change the color of links on hover */
-.topnav a:hover {
-  background-color: #BACBA9;
-  color: white;
-}
 
-/* Add a color to the active/current link */
-.topnav a.active {
-  background-color: #E1F4CB;
-  color: black;
-}
-
-.page-name {
-	font-family: Muli, sans-serif;
-	font-size: 7rem;
-	padding-top: 5rem;
-	letter-spacing: 1rem;
-}
-
-.btn-group button {
+.ghost-button-notebook {
   font-family: Muli, sans-serif;
-  font-size: 2rem;
-  background-color: #E1F4CB; /* background */
-  color: black; /* text */
-  border: none;
-  padding: 10px 24px; /* Some padding */
-  cursor: pointer; /* Pointer/hand icon */
-  float: left; /* Float the buttons side by side */
+  text-size:1rem;
+  display: block;
+  width: 400px;
+  height: 45px;
+  line-height: 22.5px;
+  margin: 0 auto;
+  padding: 8px;
+  color: #fff;
+  border: 2px solid #fff;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+  transition: width 0.3s ease-out,
+              height 0.3s ease-out,
+              line-height 0.3s ease-out;
 }
-
-/* Clear floats (clearfix hack) */
-.btn-group:after {
-  content: "";
-  clear: both;
-  display: table;
+.ghost-button-notebook:hover,
+.ghost-button-notebook:active {
+  color:#717568;
+  font-family: Muli, sans-serif;
+  background-color: white;
+  width: 440px;
+  height: 60px;
+  line-height: 30px;
+  transition: width 0.1s ease-in,
+              height 0.1s ease-in,
+              line-height 0.1s ease-in;
 }
-
-.btn-group button:not(:last-child) {
-  border-right: none; /* Prevent double borders */
-}
-
-/* Add a background color on hover */
-.btn-group button:hover {
-  background-color: #BACBA9;
+.page-name {
+  font-family: Muli, sans-serif;
+  font-weight: bold;
+  font-size: 7rem;
   color: white;
+  padding-top: 5rem;
+  letter-spacing: 1rem;
+}
+
+.page-header {
+  font-family: Muli, sans-serif;
+  font-weight: bold;
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  color: white;
+  padding-top: 5rem;
+  letter-spacing: 1rem;
 }

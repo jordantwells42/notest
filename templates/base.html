@@ -2,31 +2,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>notest</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+	<title>notest</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
-<body style="background-color: #E1F4CB">
+<body class="background-image">
 
-<div class="dropdown" style="float:left">
 	<!-- Nav Bar-->
-	<div class="topnav">
-  		<a class="active" href="#home">Home</a>
-  		<a href="#faq">FAQ</a>
-		<a href="#contact">Contact</a>
-		<a href="#about">About</a>
-		<a href="#login">Login</a>
-	</div>
+	<nav class="navbar fixed-top navbar-expand-md">
+		<div class="container">
+			<button class="navbar-dark navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		<div class="collapse navbar-collapse">
+			<ul class = "navbar-nav ml-auto">
+				<li class="nav-item">
+					<a class="nav-link scroll-link" href="#home">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link scroll-link" href="#contact">Contact</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link scroll-link" href="#about">About</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link scroll-link" href="#login">Login</a>
+				</li>
+			</ul>
+		</div>
+		</div>
+	</nav>
 
 	<!--Editable-->
 	{% block content%}
 	{% endblock content%}
 	
-</div>
-
 	
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
