@@ -5,7 +5,9 @@
 </head>
 <body>
 	{% if user.is_authenticated %}
+	<a href = "{% url 'notes:notes_index' username=user.get_username %}">
 	<h1> Welcome {{user.get_username}}</h1>
+</a>
 	{% endif %}
 	<a href='{% url "login" %}'> Login </a>
 	<br>

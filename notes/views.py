@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
 from django.core import serializers
 from .models import *
+from .serializers import *
 from django.contrib.auth import *
+from rest_framework import viewsets
+from rest_framework import permissions
 
 # Create your views here.
 def notes_index(request, username):
@@ -57,3 +60,31 @@ def note_page(request, username, pk):
 
 	else:
 		return redirect("login")
+
+
+class NoteViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Note.objects.all()
+    serializer_class = NoteSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class SectionViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Section.objects.all()
+    serializer_class = SectionSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+
+class TermViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Term.objects.all()
+    serializer_class = TermSerializer
+    permission_classes = [permissions.IsAuthenticated]

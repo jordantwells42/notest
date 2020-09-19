@@ -4,7 +4,7 @@ from django.urls import reverse
 import re
 
 def index(request):
-    return render(request, "core/main.html")
+    return render(request, "core/index.html")
 
 def register(request):
     context = None

@@ -20,6 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls', 'core'), name = 'core'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('notes/', include('notes.urls', 'notes'), name = 'notes')
+    path('notes/', include('notes.urls', 'notes'), name = 'notes'),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 
 ]

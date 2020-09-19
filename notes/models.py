@@ -13,7 +13,9 @@ class Note(models.Model):
 		return self.title
 
 class Tag(models.Model):
-	name = models.CharField(max_length=20)
+	name = models.CharField(max_length=35)
+	def __str__(self):
+		return self.name
 
 class Section(models.Model):
 	title = models.CharField(max_length = 255)

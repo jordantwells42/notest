@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
     'core.apps.CoreConfig',
     'notes.apps.NotesConfig',
     'django.contrib.admin',
