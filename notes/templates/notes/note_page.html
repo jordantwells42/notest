@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Note</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
 	{% for section in sections %}
 		<p>{{section.title}}</p>
 			
 
 	{% endfor%}
-</body>
-</html>
+{% endblock content %}
