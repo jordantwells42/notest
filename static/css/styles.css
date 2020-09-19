@@ -60,6 +60,8 @@ div {
 }
 
 .btn-group button {
+  font-family: Muli, sans-serif;
+  font-size: 2rem;
   background-color: #E1F4CB; /* background */
   color: black; /* text */
   border: none;
