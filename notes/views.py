@@ -13,7 +13,7 @@ import random
 def quiz_page(request, username, pk):
     context = None
     form = request.POST
-    questions = {}
+    questions = {"questions": []}
     for i in range(int(form["qs"])):
         t = random.choice(Term.objects.filter(section__note__id = pk))
 
@@ -24,23 +24,29 @@ def quiz_page(request, username, pk):
             possible_qs.append(d.text )
         for q in Question.objects.filter(term = t):
             possible_qs.append((q.question, q.answer))
-        print(possible_qs)
 
         q = random.choice(possible_qs)
+        print(q)
+        if type(q) == "Tuple":
+            ques = q[0]
+            a = q[1]
+            w_as = [random.choice(Question.objects.filter(term = t).exclude(answer = a)).answer for j in range(3)]
+        elif q:
+            ques = f"{q} is a "
+            a = t.name
+            poss_w_as = []
+            for b in Term.objects.exclude(name = t.name):
+                poss_w_as.append(b.name)
+            w_as = {random.choice(poss_w_as) for _ in range(3)}
+        else:
+            continue
+        print(a)
+        answers = [a]
+        for w_a in w_as:
+            answers.append(w_a)
+        questions['questions'].append({"question": ques, "answer" : answers})
+        print(questions)
 
-        for i in range(5):
-            if len(q) == 2:
-                question = q[0]
-                answer = q[1]
-            elif len(q) == 1:
-                question = q
-                answer = t.name
-            else:
-                q = random.choice(possible_qs)
-
-        print(question)
-        questions[question[0]] = answer
-        
     context = {
         "questions" : questions
     }   
@@ -49,22 +55,22 @@ def quiz_page(request, username, pk):
 
 
 
-def notes_index(request):
+def notes_index(request, username):
     context = None
     user = User.objects.get(pk = 1)
 
-    #if user.is_authenticated and user.get_username() == username:
-    notes = Note.objects.filter(user=user)
+    if user.is_authenticated and user.get_username() == username:
+        notes = Note.objects.filter(user=user)
 
 
-    context = {
-        "notes" : notes
-    }
+        context = {
+            "notes" : notes
+        }
 
-    return render(request, "notes/notes_index.html", context)
+        return render(request, "notes/notes_index.html", context)
 
-    #else:
-        #return redirect("login")
+    else:
+        return redirect("login")
 
 def note_page(request, username, pk):
     context = None
