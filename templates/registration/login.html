@@ -14,12 +14,12 @@
         <p style="color: red; display: block;">Your username and password didn't match. Please try again.</p>
     {% endif %}
 
-    <form style="display: inline-block; text-align: left" method="post" action="{% url 'login' %}">
+    <form style="display: inline-block; text-align: left" method="post" action="">
       {% csrf_token %}
       <label style="display: block" class="form" for="username">Username:</label>
       <input type="text" id="username" name="username"><br><br>
       <label style="display: block" class="form" for="email">Password:</label>
-      <input type="text" id="password_1" name="password_1"><br><br>
+      <input type="text" id="password" name="password"><br><br>
       <input class="ghost-button" type="submit" value="Login" style="background-color: #717568">
       <input type="hidden" name="next" value="">
     </form> 

@@ -46,12 +46,13 @@ def quiz_page(request, username, pk):
             answers = [(a, True)]
             for w_a in w_as:
                 answers.append((w_a, False))
+            answers = random.shuffle(answers)
             questions['questions'].append({"question": ques, "answer" : answers})
             print(questions)
 
         context = {
                 "questions" : questions,
-                "pk": pk
+                "pk": pk,
                 "qs" : qs
         }
               
@@ -71,7 +72,7 @@ def results_page(request, username, pk, qs):
 
         context = {
             "correct": correct,
-            "qs" : qs
+            "qs" : qs,
             "pk" : pk
         }
 
