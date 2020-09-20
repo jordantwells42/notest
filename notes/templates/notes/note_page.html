@@ -4,8 +4,13 @@
 			<div class = "col-lg-12" align="center">
 				<h1 class="page-header">N O T E S
 				</h1>
+				
 			</div>
-
+		<div class = "row">
+			{% for result in results %}
+						<p>{{result}}</p>
+			{% endfor %}
+		</div>
 	<div class="row">
 		<div class = "col-10 list-group">
 		{% for section in notes.sections %}

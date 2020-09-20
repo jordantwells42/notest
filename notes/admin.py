@@ -22,6 +22,9 @@ class QuestionAdmin(admin.ModelAdmin):
 class DefintionAdmin(admin.ModelAdmin):
 	pass
 
+class ResultAdmin(admin.ModelAdmin):
+	pass
+
 
 admin.site.register(Note, NoteAdmin)
 admin.site.register(Tag, TagAdmin)
@@ -30,3 +33,4 @@ admin.site.register(Term, TermAdmin)
 admin.site.register(Example, ExampleAdmin)
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Defintion, DefintionAdmin)
+admin.site.register(Result, ResultAdmin)
