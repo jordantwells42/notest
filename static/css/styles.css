@@ -88,7 +88,7 @@ div {
 }
 
 .button {
-  background-color: #717568;
+  background-color:#BACBA9;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -100,8 +100,8 @@ div {
 
 .button:hover,
 .button:active {
-  background-color: #fff;
-  color: #717568;
+  background-color: #E1F4CB;
+  color: #BACBA9;
 }
 
 .page-name {

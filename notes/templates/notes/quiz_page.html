@@ -1,19 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
+
+	<div class="container" style="background-size: cover;">
+			<div class = "col-lg-12" align="center">
+				<h1 class="page-header">Q U I Z
+				</h1>
+			</div>
+
 	<form method="POST" action = "{% url 'notes:results_page' user.get_username pk qs %}">
 		{% csrf_token %}
 	{% for question in questions.questions %}
-		<p>{{question.question}}</p>
+		<p class="question">{{question.question}}</p>
 		
 		{% for answer in question.answer %}
-			<input type="radio" name="answer-{{forloop.parentloop.counter}}" value="{{answer.1}}">{{answer.0}}
+			<input type="radio" name="answer-{{forloop.parentloop.counter}}" value="{{answer.1}}"><p class="question" style="display: inline-block">{{answer.0}}</p>
         {% endfor %}
 	{% endfor %}
-	<input class="ghost-button" type="submit" value="Submit" style="background-color: #717568">
+	<input class="button" type="submit" value="Submit" style="background-color: #717568">
      </form>
 
 <script type="text/javascript">
@@ -23,5 +26,5 @@
 	}	
 
 </script>
-</body>
-</html>
+
+{% endblock content %}
