@@ -11,6 +11,7 @@ html {
   text-size-adjust: 100%;
 }
 body {
+   padding-top: 100px;
   overflow-x: hidden;
 }
 
@@ -39,7 +40,7 @@ div {
 }
 
 .nav-img {
-    height: 40px;
+    height: 4rem;
 }
 
 .nav-item, .scroll-link, .navbar-collapse{

@@ -7,9 +7,7 @@
 				<h1 class="page-name">N O T E S T
 				</h1>
 				{% if user.is_authenticated %}
-				<a href = "{% url 'notes:notes_index' username=user.get_username %}">
 				<h1 class = "col-lg-12 page-name" style = "font-size: 2rem; margin-bottom: 40px" align="center"> Welcome {{user.get_username}} </h1>
-				</a>
 				{% endif %}
 				<div>
 					{% if user.is_authenticated %}

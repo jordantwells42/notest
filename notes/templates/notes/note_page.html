@@ -32,7 +32,7 @@
 		    <input type="hidden" name="next" value=""> 
 		  </form>
 
-		  <form method = "post" action="{% url 'notes:quiz_page' user.get_username note.pk %}">
+		  <form method = "post" action="{% url 'notes:note_page' user.get_username note.pk %}">
 		  	{% csrf_token %}
 		  <input type="radio" name="model" value="Section"> Section
 		  <input type="radio" name="model" value="Term"> Term
