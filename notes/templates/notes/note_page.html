@@ -26,11 +26,25 @@
 		</div>
 			<form class = "col-2" method="post" action="{% url 'notes:quiz_page' user.get_username note.pk %}">
 		    {% csrf_token %}
-		      <label class="question" for="qs">Number of Questions</label>
+		      
 				<input class="text-box" type="text" id="qs" name="qs"><br><br>
 		    <input class="button" type="submit" value="Quiz" />
 		    <input type="hidden" name="next" value=""> 
 		  </form>
+
+		  <form method = "post" action="{% url 'notes:quiz_page' user.get_username note.pk %}">
+		  	{% csrf_token %}
+		  <input type="radio" name="model" value="Section"> Section
+		  <input type="radio" name="model" value="Term"> Term
+		  <input type="radio" name="model" value="Definition"> Defintion
+		  <input type="radio" name="model" value="Example"> Example
+		  <label class="" for="parent">What is it contained in?</label>
+		  <input class="" type="text-box" id="parent" name="parent">
+		  <label class="" for="text">Text</label>
+		  <input class="" type="text-box" id="text" name="text">
+		  <input class="button" type="submit" value="Submit" />
+		    <input type="hidden" name="next" value=""> 
+		</form>
 
 	 </div>
 	</div>

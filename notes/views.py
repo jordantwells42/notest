@@ -101,44 +101,69 @@ def notes_index(request, username):
         return redirect("login")
 
 def note_page(request, username, pk):
-    context = None
-    user = User.objects.get(pk = 1)
-    if user.is_authenticated and user.get_username() == username:
-        if pk in [note.id for note in Note.objects.filter(user=user)]:
-            n = Note.objects.get(pk = pk)
-            note = {}
-            note["sections"] = []
-            for i, s in enumerate(Section.objects.filter(note__id = pk)):
-                note["sections"].append({})
-                note["sections"][i]["section_title"] = s.title
-                note["sections"][i]["terms"] = []
-                for j, t in enumerate(Term.objects.filter(section  = s)):
-                    note["sections"][i]["terms"].append({})
-                    note["sections"][i]["terms"][j]["term_name"] = t.name
+    if request.method == "GET":
+        context = None
+        user = User.objects.get(pk = 1)
+        if user.is_authenticated and user.get_username() == username:
+            if pk in [note.id for note in Note.objects.filter(user=user)]:
+                n = Note.objects.get(pk = pk)
+                note = {}
+                note["sections"] = []
+                for i, s in enumerate(Section.objects.filter(note__id = pk)):
+                    note["sections"].append({})
+                    note["sections"][i]["section_title"] = s.title
+                    note["sections"][i]["terms"] = []
+                    for j, t in enumerate(Term.objects.filter(section  = s)):
+                        note["sections"][i]["terms"].append({})
+                        note["sections"][i]["terms"][j]["term_name"] = t.name
+
+                        
+                        note["sections"][i]["terms"][j]["defintions"] = [d.text for d in Defintion.objects.filter(term = t)]
 
                     
-                    note["sections"][i]["terms"][j]["defintions"] = [d.text for d in Defintion.objects.filter(term = t)]
+                        note["sections"][i]["terms"][j]["examples"] = [e.text for e in Example.objects.filter(term = t)]
 
+
+                        note["sections"][i]["terms"][j]["questions"] = [q.text for q in Question.objects.filter(term = t)]
                 
-                    note["sections"][i]["terms"][j]["examples"] = [e.text for e in Example.objects.filter(term = t)]
-
-
-                    note["sections"][i]["terms"][j]["questions"] = [q.text for q in Question.objects.filter(term = t)]
-            
-            print(note)
-            context = {
-                "notes": note,
-                "note": n
-            }
+                print(note)
+                context = {
+                    "notes": note,
+                    "note": n
+                }
 
 
 
-            return render(request, "notes/note_page.html", context)
+                return render(request, "notes/note_page.html", context)
+
+            else:
+                return redirect("notes:notes_index", user.get_username())
 
         else:
-            return redirect("notes:notes_index", user.get_username())
+            return redirect("login")
 
-    else:
-        return redirect("login")
+    if request.method = "POST":
+        form = request.POST
+
+        text = form.get("text")
+        model = form.get("model")
+        parent = form.get("parent")
+        n = Note.objects.get(pk = pk)
+
+        if model == "Section":
+            s = Section(title = text, note = n)
+            s.save()
+        if model == "Term":
+            t = Term(name = text, section = Section.objects.filter(section__title = parent))
+            t.save()
+        if model == "Defintion":
+            d = Defintion(text = text, term = Term.objects.filter(term__name = parent))
+            d.save()
+        if model == "Example":
+            e = Example(text = text, term = Term.objects.filter(term__name = parent))
+            e.save()
+
+        
+
 
 
