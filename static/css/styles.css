@@ -28,6 +28,20 @@ div {
   background-size: 1920px 1080px
 }
 
+.navbar-brand {
+    display: inline-block;
+    padding-top: .3125rem;
+    padding-bottom: .3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+}
+
+.nav-img {
+    height: 40px;
+}
+
 .nav-item, .scroll-link, .navbar-collapse{
   font-family:  Muli, sans-serif;
   color: white;
