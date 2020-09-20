@@ -22,16 +22,11 @@
   
   <form method="post" action="{% url 'login' %}">
     {% csrf_token %}
-    <table>
-      <tr>
-        <td>{{ form.username.label_tag }}</td>
-        <td>{{ form.username }}</td>
-      </tr>
-      <tr>
-        <td>{{ form.password.label_tag }}</td>
-        <td>{{ form.password }}</td>
-      </tr>
-    </table>
+    <label class="form" for="username">Username:</label>
+    <input type="text" id="username" name="username"><br><br>
+    <label for="email">Password:</label>
+    <input type="text" id="password" name="password"><br><br>
+    <label for="email">Re-Type Password:</label>
     <input type="submit" value="Login" />
     <input type="hidden" name="next" value="">
   </form> 
