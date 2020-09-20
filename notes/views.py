@@ -46,14 +46,15 @@ def quiz_page(request, username, pk):
             answers = [(a, True)]
             for w_a in w_as:
                 answers.append((w_a, False))
-            answers = random.shuffle(answers)
+            random.shuffle(answers)
             questions['questions'].append({"question": ques, "answer" : answers})
             print(questions)
+            print(answers)
 
         context = {
                 "questions" : questions,
                 "pk": pk,
-                "qs" : qs
+                "qs" : int(form["qs"])
         }
               
 
@@ -63,10 +64,11 @@ def quiz_page(request, username, pk):
 def results_page(request, username, pk, qs):
     if request.method == "POST":
         form = request.POST
+        print(form)
         correct = 0
 
         for i in range(1, int(qs) + 1):
-            if form[f"answer-{i}"] == "True":
+            if form.get(f"answer-{i}") == "True":
                 correct += 1
 
 
@@ -77,7 +79,7 @@ def results_page(request, username, pk, qs):
         }
 
 
-        return(request, "notes/results_page.html", context)
+        return render(request, "notes/results_page.html", context)
 
 
 
