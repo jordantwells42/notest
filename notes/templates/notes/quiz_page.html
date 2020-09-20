@@ -10,13 +10,15 @@
 	<form method="POST" action = "{% url 'notes:results_page' user.get_username pk qs %}">
 		{% csrf_token %}
 	{% for question in questions.questions %}
-		<p class="question">{{question.question}}</p>
+		<p class="question" style="font-weight: bold; font-size: 2rem;">{{question.question}}</p>
 		
 		{% for answer in question.answer %}
-			<input class="radio" type="radio" name="answer-{{forloop.parentloop.counter}}" value="{{answer.1}}"><p class="question" style="display: inline-block">{{answer.0}}</p>
+			<input class="radio" type="radio" name="answer-{{forloop.parentloop.counter}}" value="{{answer.1}}"><p class="question" style="display: inline-block; font-size: 1.5rem;">{{answer.0}}</p>
         {% endfor %}
 	{% endfor %}
-	<input class="button" type="submit" value="Submit" style="background-color: #717568">
+	<div class="row">
+		<input class="button" type="submit" value="Submit">
+	</div>
      </form>
 
 <script type="text/javascript">
