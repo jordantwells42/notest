@@ -1,8 +1,6 @@
 {% extends "base.html"%}
 {% block content %}
-	  {% if error %}
-    <p>{{error}}</p>
-  {% endif %}
+	
 	<div class>
 	<div class="container" style="color: white; background-size: cover;">
 		<div class = "col-lg-12" align="center">
@@ -11,6 +9,9 @@
 		</div>
 
 	<div class="container" align="center">
+		{% if error %}
+	    <p class="error" style="color: red">{{error}}</p>
+	    {% endif %}
 		<form style="display: inline-block; text-align: left" method="post" action="">
 		{% csrf_token %}
 	    	<label style="display: block" class="form" for="username">Username:</label>

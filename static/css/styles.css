@@ -113,3 +113,12 @@ div {
   color: white;
   padding-top: 1rem;
 }
+
+.error {
+ font-family: Comic Sans, sans-serif;
+  font-size: 1.25rem;
+  font-weight: bold
+  margin-bottom: 1rem;
+  color: white;
+  padding-top: 1rem;
+}
