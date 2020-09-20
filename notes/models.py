@@ -38,7 +38,7 @@ class Example(models.Model):
 	def __str__(self):
 		return self.text
 
-class Defintion(models.Model):
+class Definition(models.Model):
 	text = models.CharField(max_length = 255)
 	term = models.ForeignKey(Term, on_delete=models.CASCADE)
 
@@ -54,11 +54,13 @@ class Question(models.Model):
 	def __str__(self):
 		return f"{self.question}: {self.answer}"
 
+
+"""
 class Result(models.Model):
 	correct = models.IntegerField()
 	total = models.IntegerField()
-	note = 	note = models.ForeignKey(Note, on_delete=models.CASCADE)
+	note = models.ForeignKey(Note, on_delete=models.CASCADE)
 
 	def __str__(self):
 		return f"{self.correct}/{self.correct}"
-
+"""

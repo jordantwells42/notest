@@ -22,7 +22,7 @@ def quiz_page(request, username, pk):
             possible_qs = []
             for e in Example.objects.filter(term = t):
                 possible_qs.append(e.text)
-            for d in Defintion.objects.filter(term = t):
+            for d in Definition.objects.filter(term = t):
                 possible_qs.append(d.text )
             for q in Question.objects.filter(term = t):
                 possible_qs.append((q.question, q.answer))
@@ -36,7 +36,7 @@ def quiz_page(request, username, pk):
                 a = q[1]
                 w_as = [random.choice(Question.objects.filter(term = t).exclude(answer = a)).answer for j in range(3)]
             elif q:
-                ques = f"{q} is a "
+                ques = f"{q}"
                 a = t.name
                 poss_w_as = []
                 for b in Term.objects.exclude(name = t.name):
@@ -80,15 +80,21 @@ def results_page(request, username, pk, qs):
             "pk" : pk
         }
 
-        result = Result(correct = correct, total = qs, note = Note.objects.get(pk = pk))
+        #result = Result(correct = correct, total = qs, note = Note.objects.get(pk = pk))
+        #result.save()
 
         return render(request, "notes/results_page.html", context)
 
 
 
 def notes_index(request, username):
+    if request.method == "POST":
+        form = request.POST
+        n = Note(title = form.get("title"), user = request.user)
+        n.save()
+
     context = None
-    user = User.objects.get(pk = 1)
+    user = request.user
 
     if user.is_authenticated and user.get_username() == username:
         notes = Note.objects.filter(user=user)
@@ -117,8 +123,8 @@ def note_page(request, username, pk):
         if model == "Term":
             t = Term(name = text, section = Section.objects.filter(title__icontains = parent).first())
             t.save()
-        if model == "Defintion":
-            d = Defintion(text = text, term = Term.objects.filter(name__icontains = parent).first())
+        if model == "Definition":
+            d = Definition(text = text, term = Term.objects.filter(name__icontains = parent).first())
             d.save()
         if model == "Example":
             e = Example(text = text, term = Term.objects.filter(name__icontains = parent).first())
@@ -126,11 +132,11 @@ def note_page(request, username, pk):
         
 
     context = None
-    user = User.objects.get(pk = 1)
+    user = request.user
     if user.is_authenticated and user.get_username() == username:
         if pk in [note.id for note in Note.objects.filter(user=user)]:
             n = Note.objects.get(pk = pk)
-            results = Result.objects.filter(note = n)
+            # print(Result.objects.filter(note = n))
 
             note = {}
             note["sections"] = []
@@ -143,7 +149,7 @@ def note_page(request, username, pk):
                     note["sections"][i]["terms"][j]["term_name"] = t.name
 
                     
-                    note["sections"][i]["terms"][j]["defintions"] = [d.text for d in Defintion.objects.filter(term = t)]
+                    note["sections"][i]["terms"][j]["definitions"] = [d.text for d in Definition.objects.filter(term = t)]
 
                 
                     note["sections"][i]["terms"][j]["examples"] = [e.text for e in Example.objects.filter(term = t)]
@@ -151,11 +157,11 @@ def note_page(request, username, pk):
 
                     note["sections"][i]["terms"][j]["questions"] = [q.text for q in Question.objects.filter(term = t)]
             
-            print(note)
+
             context = {
                 "notes": note,
                 "note": n,
-                "results": result
+                #"results": results
             }
 
 

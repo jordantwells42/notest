@@ -2,11 +2,18 @@
 {% block content %}
 	<div class="container" style="background-size: cover;">
 			<div class = "col-lg-12" align="center">
-				<h1 class="page-header">N O T E S
+				<h1 class="page-header mb-5"><span style = "color: #E1F4CB"> N O T E </span> S
 				</h1>
 				
 			</div>
+			<div class = "col-lg-12" align="center">
+				<h2 class="page-subheader mb-5">{{note.title}}
+				</h2>
+			</div>
+
+			<!---
 		<div class = "row">
+			{% if results %}
 			<h2 class = "col-12">
 				Previous Results:
 			</h2>
@@ -15,17 +22,27 @@
 						<p>{{result}}</p>
 			{% endfor %}
 			</div>
+			{% endif %}
 		</div>
+		!--->
 	<div class="row">
-		<div class = "col-10 list-group">
+		<div class = "col-md-10 mb-3 list-group">
 		{% for section in notes.sections %}
 			<div class="list-group-item section nested-sortables" style="background-color: #717568"> <p class="notes-section-title">{{section.section_title}} </p>
 
 			{% for term in section.terms %}
-				<div class="list-group-item term nested-sortables" style="background-color: #BACBA9"><p class="notes-term-name"> {{term.term_name}} </p>
-					{% for def in term.defintions %}
-						<div class="list-group-item definition" style="background-color: #E1F4CB"><p class="notes-def"> {{def}} </p>
+				<div class="list-group-item term nested-sortables" style="background-color: #BACBA9"><p class="notes-term-name" style = "color: white"> {{term.term_name}} </p>
+					{% for def in term.definitions %}
+						<div class="list-group-item definition" style="background-color: #E1F4CB"><p class="notes-def">Definition: {{def}} </p>
 						</div>
+					{% endfor %}
+					{% for ex in term.examples %}
+						<div class="list-group-item definition" style="background-color: #E1F4CB"><p class="notes-def">Ex: {{ex}} </p>
+						</div>
+					{% for q in term.questions %}
+					<div class="list-group-item definition" style="background-color: #E1F4CB"><p class="notes-def"> {{ex}} </p>
+						</div>
+					{% endfor %}
 					{% endfor %}
 				</div>
 			{% endfor %}
@@ -34,31 +51,64 @@
 
 		{% endfor %}
 		</div>
-			<form class = "col-2" method="post" action="{% url 'notes:quiz_page' user.get_username note.pk %}">
+		<div class = "col-md-2 mb-3" >
+			<h2 class = "notes-section-title">QUIZ</h2>
+			<form method="post" action="{% url 'notes:quiz_page' user.get_username note.pk %}">
 		    {% csrf_token %}
-		      
+		     
 			<p class="question">Number of Questions</p>
 			<input class="text-box" type="text" id="qs" name="qs"><br><br>
 		    <input class="button" type="submit" value="Quiz" />
 		    <input type="hidden" name="next" value=""> 
 		  </form>
+		</div>
 
-		  <form method = "post" action="{% url 'notes:note_page' user.get_username note.pk %}">
+	</div>
+
+	<br>
+	<div class = "row">
+		<h1 class="form mb-3" style="font-weight: bold; font-size: 2rem;">Create A Card</h1>
+	</div>
+	<form method = "post" action="{% url 'notes:note_page' user.get_username note.pk %}">
 		  	{% csrf_token %}
-		  <input type="radio" name="model" value="Section"> Section
-		  <input type="radio" name="model" value="Term"> Term
-		  <input type="radio" name="model" value="Definition"> Defintion
-		  <input type="radio" name="model" value="Example"> Example
-		  <label class="" for="parent">What is it contained in?</label>
-		  <input class="" type="text-box" id="parent" name="parent">
-		  <label class="" for="text">Text</label>
-		  <input class="" type="text-box" id="text" name="text">
-		  <input class="button" type="submit" value="Submit" />
-		    <input type="hidden" name="next" value=""> 
+		<div class="row">
+
+		  <div class="col-md-2 mb-5">
+		  	
+		  	<br>
+		  	<div class = "row">
+
+		  	<input type="radio" id="section" name="model" value="Section"><br><br>
+		  		<label class="notes-add" for="section">Section</label>
+		  	</div>
+		  	<div class = "row">
+				  <input type="radio" id="term" name="model" value="Term"><br><br>
+				<label class="notes-add" for="term">Term</label>
+				</div>
+			<div class = "row">
+				  <input type="radio" id="definition" name="model" value="Definition"><br><br>
+				<label class="notes-add" for="definition">Definition</label>
+				</div>
+			<div class = "row">
+				   <input type="radio" id="example" name="model" value="Example"><br><br>
+				   <label class="notes-add" for="example">Example</label>
+				   </div>
+			</div>
+				 
+				 
+		  <div class="col-md-4 mb-5">
+		  		<p class = "notes-add-2">Parent</p>
+			  	<input class="notes-text-box" type="text" id="parent" name="parent"><br><br>
+			  	<p class = "notes-add-2">Text</p>		 	 
+			  	<input class="notes-text-box" type="text" id="text" name="text"><br><br>
+			  <input class="button" type="submit" value="Submit" />
+		    <input type="hidden" name="next" value="">
+		  </div>
+		 </div>
 		</form>
 
 	 </div>
-	</div>
+	
 	<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 
 	<script>

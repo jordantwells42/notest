@@ -145,20 +145,16 @@ div {
 .page-subheader {
   font-family: Muli, sans-serif;
   font-weight: bold;
-  font-size: 5rem;
-  margin-bottom: 1rem;
+  font-size: 2rem;
   color: white;
-  padding-top: 5rem;
-  letter-spacing: 1rem;
+  letter-spacing: 0.5rem;
 }
 
 .form {
  font-family: Muli, sans-serif;
   font-size: 1.25rem;
-  font-weight: bold
-  margin-bottom: 1rem;
+  font-weight: bold;
   color: white;
-  padding-top: 1rem;
 }
 
 .error {
@@ -195,9 +191,28 @@ div {
 
 }
 
+.notes-add-2 {
+  font-family: Muli, sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+}
+
+.notes-add {
+  font-family: Muli, sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  padding-left: 10px;
+  position: relative;
+  bottom: 5px;
+}
+
+
 .section .term{
       padding:10px;
       padding-bottom: 50px;
+      padding-top: -5px;
     }
 
   .defintion{
@@ -207,6 +222,11 @@ div {
 .text-box {
   width: 40px;
   height: 40px;
+}
+
+.notes-text-box {
+  width: 80%;
+  height: 20%;
 }
 
 .question {

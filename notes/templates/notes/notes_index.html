@@ -5,13 +5,22 @@
 	<div class>
 		<div class="container" style="background-size: cover;">
 			<div class = "col-lg-12" align="center">
-				<h1 class="page-header">N O T E B O O K S
+				<h1 class="page-header"><span style = "color: #E1F4CB"> N O T E </span> B O O K S
 				</h1>
 			</div>
-			<div class="col-md-12" align="center">
+			<div class="col-md-12 mb-5" align="center">
 				{% for note in notes %}
-				<a class="ghost-button-notebook" href="{% url 'notes:note_page' user.get_username note.pk %}">{{note.title}}</a>
+				<a class="ghost-button-notebook my-2" href="{% url 'notes:note_page' user.get_username note.pk %}">{{note.title}}</a>
 				{% endfor %}
+			</div>
+			<div class="col-md-12 my-5" align="center">
+
+				<form method = "post" action = "{% url 'notes:notes_index' user.get_username %}">
+				{% csrf_token %}
+				<label style="display: block; color: white" class="form" for="title">Create a New Notebook</label>
+				<input type="text" id="title" name="title"><br><br>
+				<input class="ghost-button" type="submit" value="Submit" style="background-color: #717568">
+				</form>
 			</div>
 		</div>
 	</div>

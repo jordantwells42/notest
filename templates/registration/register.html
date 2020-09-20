@@ -14,13 +14,23 @@
 	    {% endif %}
 		<form style="display: inline-block; text-align: left" method="post" action="">
 		{% csrf_token %}
-	    	<label style="display: block" class="form" for="username">Username:</label>
-			<input type="text" id="username" name="username"><br><br>
-			<label style="display: block" class="form" for="email">Email Address:</label>
-			<input type="text" id="email" name="email"><br><br>
-			<label style="display: block" class="form" for="email">Password:</label>
-			<input type="text" id="password_1" name="password_1"><br><br>
-			<label style="display: block" class="form" for="email">Re-Type Password:</label>
+		<div class = "row">
+			<div class = "col-md-6">
+		    	<label style="display: block" class="form" for="username">Username:</label>
+				<input type="text" id="username" name="username"><br><br>
+				<label style="display: block" class="form" for="email">Email Address:</label>
+				<input type="text" id="email" name="email"><br><br>
+				<label style="display: block" class="form" for="email">Password:</label>
+				<input type="text" id="password_1" name="password_1"><br><br>
+				<label style="display: block" class="form" for="email">Re-Type Password:</label>
+			</div>
+			<div class = "col-md-6">
+		    	<label style="display: block" class="form" for="fname">First Name:</label>
+				<input type="text" id="fname" name="fname"><br><br>
+				<label style="display: block" class="form" for="lname">Last Name:</label>
+				<input type="text" id="lname" name="lname"><br><br>
+			</div>
+		</div>
 			<input type="text" id="password_2" name="password_2"><br><br>
 			<input class="ghost-button" type="submit" value="Submit" style="background-color: #717568">
 	  </form>

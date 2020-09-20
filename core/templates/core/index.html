@@ -4,16 +4,22 @@
 	<div class>
 		<div class="container" style="color: black; background-size: cover;">
 			<div class = "col-lg-12" align="center">
-				<h1 class="page-name">N O T E S T
+				<h1 class="page-name"><span style = "color: #E1F4CB"> N O T E </span> S T 
 				</h1>
 				{% if user.is_authenticated %}
-				<h1 class = "col-lg-12 page-name" style = "font-size: 2rem; margin-bottom: 40px" align="center"> Welcome {{user.get_username}} </h1>
+				<h1 class = "col-lg-12 page-name" style = "font-size: 2rem; margin-bottom: 40px" align="center"> Welcome <span style = "color: #E1F4CB">{{user.first_name}} </span> </h1>
+				{% else %}
+				<h1 class = "col-lg-12 page-name" style = "font-size: 2rem; margin-bottom: 40px" align="center"> Welcome <span style = "color: #E1F4CB"> </span> </h1>
 				{% endif %}
 				<div>
 					{% if user.is_authenticated %}
 					<a class="ghost-button" href="{% url 'notes:notes_index' username=user.get_username %}">Notebooks</a>
 					<a class="ghost-button" href="#quizzes">Quizzes</a>
+					{% else %}
+					<a class="ghost-button" href='{% url "login" %}'>Login</a>
+
 					{% endif %}
+
 				</div>
 			</div>
 		</div>

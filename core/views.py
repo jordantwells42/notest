@@ -18,6 +18,8 @@ def register(request):
         email = form['email']
         password_1 = form['password_1']
         password_2 = form['password_2']
+        first_name = form["fname"]
+        last_name = form['lname']
         error = None
 
         if not username:
@@ -41,7 +43,9 @@ def register(request):
             User.objects.create_user(
                 username=username,
                 email=email,
-                password=password_1
+                password=password_1,
+                first_name=first_name,
+                last_name=last_name
                 )
 
             return redirect("login")
