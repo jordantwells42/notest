@@ -7,14 +7,14 @@
 			</div>
 
 	<div class="row">
-		<div class = "col-6 list-group">
+		<div class = "col-10 list-group">
 		{% for section in notes.sections %}
 			<div class="list-group-item section nested-sortables" style="background-color: #717568"> <p class="notes-section-title">{{section.section_title}} </p>
 
 			{% for term in section.terms %}
-				<div class="list-group-item term nested-sortables"><p class="notes-term-name"> {{term.term_name}} </p>
+				<div class="list-group-item term nested-sortables" style="background-color: #BACBA9"><p class="notes-term-name"> {{term.term_name}} </p>
 					{% for def in term.defintions %}
-						<div class="list-group-item definition"><p class="notes-def"> {{def}} </p>
+						<div class="list-group-item definition" style="background-color: #E1F4CB"><p class="notes-def"> {{def}} </p>
 						</div>
 					{% endfor %}
 				</div>
@@ -26,7 +26,7 @@
 		</div>
 			<form class = "col-2" method="post" action="{% url 'notes:quiz_page' user.get_username note.pk %}">
 		    {% csrf_token %}
-		      <label for="qs">Number of Questions</label>
+		      <label class="question" for="qs">Number of Questions</label>
 				<input class="text-box" type="text" id="qs" name="qs"><br><br>
 		    <input class="button" type="submit" value="Quiz" />
 		    <input type="hidden" name="next" value=""> 

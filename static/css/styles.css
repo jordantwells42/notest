@@ -88,7 +88,7 @@ div {
 }
 
 .button {
-  background-color: #4CAF50; /* Green */
+  background-color: #717568;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -161,7 +161,7 @@ div {
 }
 
 .notes-term-name {
-  background-color: #717568;
+  background-color: #BACBA9;
   font-family: Muli, sans-serif;
   font-size: 1.5rem;
   font-weight: bold;
@@ -169,7 +169,7 @@ div {
 }
 
 .notes-def {
-  background-color: #717568;
+  background-color: #E1F4CB;
   font-family: Muli, sans-serif;
   font-size: 1rem;
   font-weight: bold;
@@ -186,6 +186,12 @@ div {
   }
 
 .text-box {
-  width: 50px;
-  height: 70px;
+  width: 40px;
+  height: 40px;
+}
+
+.question {
+  font-family: Muli, sans-serif;
+  font-size: 1rem;
+  color: white;
 }
