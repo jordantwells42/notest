@@ -27,7 +27,8 @@
 			<form class = "col-2" method="post" action="{% url 'notes:quiz_page' user.get_username note.pk %}">
 		    {% csrf_token %}
 		      
-				<input class="text-box" type="text" id="qs" name="qs"><br><br>
+			<p class="question">Number of Questions</p>
+			<input class="text-box" type="text" id="qs" name="qs"><br><br>
 		    <input class="button" type="submit" value="Quiz" />
 		    <input type="hidden" name="next" value=""> 
 		  </form>

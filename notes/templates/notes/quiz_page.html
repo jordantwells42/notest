@@ -13,7 +13,7 @@
 		<p class="question">{{question.question}}</p>
 		
 		{% for answer in question.answer %}
-			<input type="radio" name="answer-{{forloop.parentloop.counter}}" value="{{answer.1}}"><p class="question" style="display: inline-block">{{answer.0}}</p>
+			<input class="radio" type="radio" name="answer-{{forloop.parentloop.counter}}" value="{{answer.1}}"><p class="question" style="display: inline-block">{{answer.0}}</p>
         {% endfor %}
 	{% endfor %}
 	<input class="button" type="submit" value="Submit" style="background-color: #717568">

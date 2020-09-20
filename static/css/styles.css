@@ -119,6 +119,10 @@ div {
   color: #BACBA9;
 }
 
+.radio {
+      display: block;
+}
+
 .page-name {
   font-family: Muli, sans-serif;
   font-weight: bold;

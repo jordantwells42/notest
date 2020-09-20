@@ -26,7 +26,9 @@ def quiz_page(request, username, pk):
                 possible_qs.append(d.text )
             for q in Question.objects.filter(term = t):
                 possible_qs.append((q.question, q.answer))
-
+            if len(possible_qs) == 0:
+                continue
+                
             q = random.choice(possible_qs)
             print(q)
             if type(q) == "Tuple":
