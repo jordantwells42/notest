@@ -11,23 +11,20 @@
 <body style="background-color: #717568">
 
 	<!-- Nav Bar-->
-	<nav class="navbar fixed-top navbar-expand-md">
-		<div class="container">
-			<a class="navbar-brand" href="/">
+	<nav class="navbar navbar-fixed fixed-top navbar-expand-md">
+	    <div class="container">
+	        <a class="navbar-brand" href="/">
 				<img class="nav-img" src="{% static 'notestlogo.png' %}" alt="Notest Logo">
 			</a>
-			<button class="navbar-dark navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-		<div class="collapse navbar-collapse">
-			<ul class = "navbar-nav ml-auto">
-				<li class="nav-item">
+	         <button class="navbar-dark navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    			<span class="navbar-toggler-icon"></span>
+  			</button>
+	        <div class="collapse navbar-collapse" id="navbarNav">
+	            <ul class="navbar-nav ml-auto">
+
+	                <li class="nav-item">
 					<a class="nav-link scroll-link" href="{% url 'core:index' %}">Home</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link scroll-link" href="#conta">Contact</a>
-				</li>
-				
 				
 				<li class="nav-item">
 					<a class="nav-link scroll-link" href='{% url "login" %}'>Login</a>
@@ -35,9 +32,10 @@
 				<li class="nav-item">
 					<a class="nav-link scroll-link" href="{% url 'core:register' %}">Register</a>
 				</li>
-			</ul>
-		</div>
-		</div>
+	                
+	            </ul>
+	        </div>
+	    </div>
 	</nav>
 
 	<!--Editable-->
