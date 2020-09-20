@@ -1,0 +1,5 @@
+{% extends 'base.html' %}
+{% block content %}
+	<p> You got {{correct}} out of {{qs}} questions right!</p>
+	<a href="{% url 'notes:note_page' user.get_username pk %}"> Return to note </a>
+{% endblock content%}
