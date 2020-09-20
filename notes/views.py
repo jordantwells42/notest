@@ -88,7 +88,7 @@ def notes_index(request, username):
 
 def note_page(request, username, pk):
     context = None
-    user = request.user
+    user = User.objects.get(pk = 1)
     #if user.is_authenticated and user.get_username() == username:
     if pk in [note.id for note in Note.objects.filter(user=user)]:
         n = Note.objects.get(pk = pk)
