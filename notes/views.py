@@ -80,6 +80,7 @@ def results_page(request, username, pk, qs):
             "pk" : pk
         }
 
+        result = Result(correct = correct, total = qs, note = Note.objects.get(pk = pk))
 
         return render(request, "notes/results_page.html", context)
 
@@ -91,7 +92,6 @@ def notes_index(request, username):
 
     if user.is_authenticated and user.get_username() == username:
         notes = Note.objects.filter(user=user)
-
 
         context = {
             "notes" : notes
@@ -130,6 +130,8 @@ def note_page(request, username, pk):
     if user.is_authenticated and user.get_username() == username:
         if pk in [note.id for note in Note.objects.filter(user=user)]:
             n = Note.objects.get(pk = pk)
+            results = Result.objects.filter(note = n)
+
             note = {}
             note["sections"] = []
             for i, s in enumerate(Section.objects.filter(note__id = pk)):
@@ -152,7 +154,8 @@ def note_page(request, username, pk):
             print(note)
             context = {
                 "notes": note,
-                "note": n
+                "note": n,
+                "results": result
             }
 
 

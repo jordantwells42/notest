@@ -54,3 +54,11 @@ class Question(models.Model):
 	def __str__(self):
 		return f"{self.question}: {self.answer}"
 
+class Result(models.Model):
+	correct = models.IntegerField()
+	total = models.IntegerField()
+	note = 	note = models.ForeignKey(Note, on_delete=models.CASCADE)
+
+	def __str__(self):
+		return f"{self.correct}/{self.correct}"
+
