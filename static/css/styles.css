@@ -24,7 +24,7 @@ div {
 }
 
 .navbar {
-  background-image: url({% static "notestbackground.jpg" %});
+  color: #717568;
   background-repeat: no-repeat;
   background-size: 1920px 1080px
 }
