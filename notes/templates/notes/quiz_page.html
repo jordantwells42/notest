@@ -5,8 +5,13 @@
 </head>
 <body>
 	{% for question in questions.questions %}
-		<p>{{question}}</p>
-		<p>{{answers}}
+		<p>{{question.question}}</p>
+		{% for answer in question.answer %}
+			<form>
+         	<input type="radio" name="gender" value="answer">{{answer}}
+         {% endfor %}
+		<input class="ghost-button" type="submit" value="Submit" style="background-color: #717568">
+        </form>
 	{% endfor %}
 
 <script type="text/javascript">

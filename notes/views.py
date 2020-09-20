@@ -12,44 +12,49 @@ import random
 
 def quiz_page(request, username, pk):
     context = None
-    form = request.POST
-    questions = {"questions": []}
-    for i in range(int(form["qs"])):
-        t = random.choice(Term.objects.filter(section__note__id = pk))
+    if request.POST.get("answer"):
+        pass
+    if request.method == "POST":
+        form = request.POST
+        questions = {"questions": []}
+        for i in range(int(form["qs"])):
+            t = random.choice(Term.objects.filter(section__note__id = pk))
 
-        possible_qs = []
-        for e in Example.objects.filter(term = t):
-            possible_qs.append(e.text)
-        for d in Defintion.objects.filter(term = t):
-            possible_qs.append(d.text )
-        for q in Question.objects.filter(term = t):
-            possible_qs.append((q.question, q.answer))
+            possible_qs = []
+            for e in Example.objects.filter(term = t):
+                possible_qs.append(e.text)
+            for d in Defintion.objects.filter(term = t):
+                possible_qs.append(d.text )
+            for q in Question.objects.filter(term = t):
+                possible_qs.append((q.question, q.answer))
 
-        q = random.choice(possible_qs)
-        print(q)
-        if type(q) == "Tuple":
-            ques = q[0]
-            a = q[1]
-            w_as = [random.choice(Question.objects.filter(term = t).exclude(answer = a)).answer for j in range(3)]
-        elif q:
-            ques = f"{q} is a "
-            a = t.name
-            poss_w_as = []
-            for b in Term.objects.exclude(name = t.name):
-                poss_w_as.append(b.name)
-            w_as = {random.choice(poss_w_as) for _ in range(3)}
-        else:
-            continue
-        print(a)
-        answers = [a]
-        for w_a in w_as:
-            answers.append(w_a)
-        questions['questions'].append({"question": ques, "answer" : answers})
-        print(questions)
+            q = random.choice(possible_qs)
+            print(q)
+            if type(q) == "Tuple":
+                ques = q[0]
+                a = q[1]
+                w_as = [random.choice(Question.objects.filter(term = t).exclude(answer = a)).answer for j in range(3)]
+            elif q:
+                ques = f"{q} is a "
+                a = t.name
+                poss_w_as = []
+                for b in Term.objects.exclude(name = t.name):
+                    poss_w_as.append(b.name)
+                w_as = {random.choice(poss_w_as) for _ in range(3)}
+            else:
+                continue
+            print(a)
+            answers = [a]
+            for w_a in w_as:
+                answers.append(w_a)
+            questions['questions'].append({"question": ques, "answer" : answers})
+            print(questions)
 
-    context = {
-        "questions" : questions
-    }   
+            context = {
+                "questions" : questions
+            }  
+
+     
 
     return render(request, "notes/quiz_page.html", context)
 
