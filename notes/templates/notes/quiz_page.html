@@ -4,17 +4,19 @@
 	<title></title>
 </head>
 <body>
+	<form method="POST" action = "{% url 'notes:result_page' user.get_username pk qs %}">
 	{% for question in questions.questions %}
 		<p>{{question.question}}</p>
-		<form method="POST" action = "{% url 'notes:result_page' user.get_username pk qs %}">
+
 		{% csrf_token %}
 		{% for answer in question.answer %}
 			<input type="radio" name="answer-{{forloop.parentloop.counter}}" value="{{answer.1}}">{{answer.0}}
         {% endfor %}
-		<input class="ghost-button" type="submit" value="Submit" style="background-color: #717568">
-        </form>
+		
 
 	{% endfor %}
+	<input class="ghost-button" type="submit" value="Submit" style="background-color: #717568">
+     </form>
 
 <script type="text/javascript">
 	var ul = document.querySelector('ul');
