@@ -1,29 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-	<style>
-		.section .term{
-			padding:10px;
-			padding-bottom: 50px;
-		}
-
-		.defintion{
-			padding:10px;
-		}
-	</style>
-</head>
-<body>
 	<div class="container" style="background-size: cover;">
 			<div class = "col-lg-12" align="center">
 				<h1 class="page-header">N O T E S
 				</h1>
 			</div>
+
 	<div class="row">
-		<div class="col-md-6">
-		<div class = "list-group list-group-flush ">
+		<div class = "col-6 list-group">
 		{% for section in notes.sections %}
 			<div class="list-group-item section nested-sortables" style="background-color: #717568"> <p class="notes-section-title">{{section.section_title}} </p>
 
@@ -36,20 +20,18 @@
 				</div>
 			{% endfor %}
 			</div>
-		</div>
+		
 
-		{% endfor %}	
+		{% endfor %}
 		</div>
-
-		<div class="col-md-2">
-			<form method="post" action="{% url 'notes:quiz_page' user.get_username note.pk %}">
+			<form class = "col-2" method="post" action="{% url 'notes:quiz_page' user.get_username note.pk %}">
 		    {% csrf_token %}
-		      <label for="qs"></label>
-				<input type="text" id="qs" name="qs"><br><br>
-		    <input class="ghost-button" type="submit" value="Quiz" />
+		      <label for="qs">Number of Questions</label>
+				<input class="text-box" type="text" id="qs" name="qs"><br><br>
+		    <input class="button" type="submit" value="Quiz" />
 		    <input type="hidden" name="next" value=""> 
 		  </form>
-	 	 </div>
+
 	 </div>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
@@ -68,8 +50,6 @@
 			})
 		}
 	</script>
-</body>
-</html>
 
 {% endblock content %}
 

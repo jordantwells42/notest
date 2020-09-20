@@ -11,7 +11,6 @@ import random
 # Create your views here.
 
 def quiz_page(request, username, pk):
-    context = None
     if request.method == "POST":
      
         form = request.POST
@@ -46,13 +45,13 @@ def quiz_page(request, username, pk):
             answers = [(a, True)]
             for w_a in w_as:
                 answers.append((w_a, False))
+
             questions['questions'].append({"question": ques, "answer" : answers})
-            print(questions)
 
         context = {
-                "questions" : questions,
-                "pk": pk
-                "qs" : qs
+            "questions":questions,
+            "pk":pk,
+            "qs":int(form["qs"])
         }
               
 
@@ -71,7 +70,7 @@ def results_page(request, username, pk, qs):
 
         context = {
             "correct": correct,
-            "qs" : qs
+            "qs" : qs,
             "pk" : pk
         }
 
