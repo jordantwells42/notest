@@ -4,7 +4,10 @@ from django.urls import reverse
 import re
 
 def index(request):
-    return render(request, "core/index.html")
+    context = {
+        "username": request.user.get_username()
+    }
+    return render(request, "core/index.html", context)
 
 def register(request):
     context = None

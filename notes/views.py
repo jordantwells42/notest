@@ -9,7 +9,6 @@ import json
 import random
 
 # Create your views here.
-CORRECT_ANSWER = None
 
 def quiz_page(request, username, pk):
     context = None
@@ -63,16 +62,9 @@ def quiz_page(request, username, pk):
 
         return render(request, "notes/quiz_page.html", context)
 
-     
-
-   
-
-
-
 def notes_index(request, username):
     context = None
-    user = User.objects.get(pk = 1)
-
+    user = request.user
     if user.is_authenticated and user.get_username() == username:
         notes = Note.objects.filter(user=user)
 

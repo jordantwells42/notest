@@ -105,6 +105,16 @@ div {
   letter-spacing: 1rem;
 }
 
+.page-subheader {
+  font-family: Muli, sans-serif;
+  font-weight: bold;
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  color: white;
+  padding-top: 5rem;
+  letter-spacing: 1rem;
+}
+
 .form {
  font-family: Muli, sans-serif;
   font-size: 1.25rem;
@@ -121,4 +131,29 @@ div {
   margin-bottom: 1rem;
   color: white;
   padding-top: 1rem;
+}
+
+.notes-section-title {
+  background-color: #717568;
+  color: white
+  font-family: Muli, sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+
+}
+
+.notes-term-name {
+  background-color: #717568;
+  font-family: Muli, sans-serif;
+  font-size: 1.75rem;
+  font-weight: bold;
+
+}
+
+.notes-def {
+  background-color: #717568;
+  font-family: Muli, sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+
 }
